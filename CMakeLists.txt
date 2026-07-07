@@ -3,4 +3,11 @@ project(Chess)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(Chess main.cpp)
+add_executable(Chess
+        main.cpp
+        src/Board.cpp
+        src/Figure.cpp
+        src/Pawn.cpp
+)
+
+target_include_directories(Chess PUBLIC include)
