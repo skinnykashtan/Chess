@@ -21,6 +21,8 @@ public:
 
     virtual std::vector<Position> getRawMoves(const Position& from, const Board& board) const = 0;
 
+    Color getColor() const;
+
     friend std::ostream& operator<<(std::ostream& os, const Figure& figure);
 };
 

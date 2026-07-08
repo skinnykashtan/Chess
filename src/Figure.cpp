@@ -10,3 +10,7 @@ std::ostream& operator<<(std::ostream& os, const Figure& figure) {
     os << symbol;
     return os;
 }
+
+Color Figure::getColor() const {
+    return color_;
+}

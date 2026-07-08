@@ -11,3 +11,4 @@ Figure* Board::at(const Position& pos) const {
 }
 
 
+
