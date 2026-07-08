@@ -10,11 +10,14 @@ std::vector<Position> Pawn::getRawMoves(const Position &from, const Board &board
     if (newSquare <= 63 && board.at({newSquare}) == nullptr) {
         moves.push_back({newSquare});
 
-        bool isStaringPos = (color_ == Color::Black ? from.row() == 1 : from.row() == 6);
+        bool isStartingPos = (color_ == Color::Black ? from.row() == 1 : from.row() == 6);
 
-        if (isStaringPos) {
+        if (isStartingPos) {
             uint8_t doubleMove = newSquare + direction;
-            moves.push_back({doubleMove});
+
+            if (doubleMove <= 63 && board.at({doubleMove}) == nullptr) {
+                moves.push_back({doubleMove});
+            }
         }
     }
 
