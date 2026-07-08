@@ -6,7 +6,7 @@ void Board::place(const Position& pos, std::unique_ptr<Figure> figure) {
     }
 }
 
-const Figure* Board::at(const Position& pos) const {
+Figure* Board::at(const Position& pos) const {
     return squares_[pos.row()][pos.col()].get();
 }
 

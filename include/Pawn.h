@@ -9,6 +9,8 @@
 class Pawn : public Figure {
 public:
     Pawn(Color color) : Figure(color, FigureType::Pawn) {}
+
+    std::vector<Position> getRawMoves(const Position& from, const Board& board) const override;
 };
 
 #endif //CHESS_PAWN_H

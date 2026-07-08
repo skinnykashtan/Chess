@@ -16,7 +16,7 @@ public:
 
     void place(const Position& pos, std::unique_ptr<Figure> figure);
 
-    const Figure* at(const Position& pos) const;
+    Figure* at(const Position& pos) const;
 };
 
 #endif //CHESS_BOARD_H
