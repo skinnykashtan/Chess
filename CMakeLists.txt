@@ -8,6 +8,7 @@ add_executable(Chess
         src/Board.cpp
         src/Figure.cpp
         src/Pawn.cpp
+        src/Rook.cpp
 )
 
 target_include_directories(Chess PUBLIC include)
