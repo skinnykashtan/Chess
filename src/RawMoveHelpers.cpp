@@ -50,3 +50,33 @@ std::vector<Position> collectingSlidingMoves(const Position &from, const Board &
 
     return moves;
 }
+
+std::vector<Position> collectJumpMoves(const Position &from, const Board &board, Color myColor, const int8_t *offsets, size_t offsetCount) {
+    std::vector<Position> moves{};
+
+    for (size_t d=0; d<offsetCount; d++) {
+        int8_t offset = offsets[d];
+        auto [dRow, dCol] = offsetToDelta(offset);
+
+        int row = from.row() + dRow;
+        int col = from.col() + dCol;
+
+        if (!isOnBoard(col, row)) {
+            continue;
+        }
+
+        uint8_t targetSquare = col + row * 8;
+
+        auto figure = board.at({targetSquare});
+
+        if (figure == nullptr) {
+            moves.push_back({targetSquare});
+        } else {
+            if (figure->getColor() != myColor) {
+                moves.push_back({targetSquare});
+            }
+        }
+    }
+
+    return moves;
+}

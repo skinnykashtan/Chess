@@ -12,6 +12,7 @@ add_executable(Chess
         src/RawMoveHelpers.cpp
         src/Queen.cpp
         src/Bishop.cpp
+        src/King.cpp
 )
 
 target_include_directories(Chess PUBLIC include)
