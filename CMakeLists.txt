@@ -13,6 +13,7 @@ add_executable(Chess
         src/Queen.cpp
         src/Bishop.cpp
         src/King.cpp
+        src/Knight.cpp
 )
 
 target_include_directories(Chess PUBLIC include)

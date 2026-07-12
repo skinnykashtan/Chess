@@ -3,6 +3,7 @@
 #include "Bishop.h"
 #include "Board.h"
 #include "King.h"
+#include "Knight.h"
 #include "Pawn.h"
 #include "Queen.h"
 #include "Rook.h"
@@ -17,6 +18,7 @@ int main() {
     std::unique_ptr<Figure> bishop = std::make_unique<Bishop>(Color::Black);
     std::unique_ptr<Figure> queen = std::make_unique<Queen>(Color::Black);
     std::unique_ptr<Figure> king = std::make_unique<King>(Color::Black);
+    std::unique_ptr<Figure> knight = std::make_unique<Knight>(Color::Black);
 
     board.place(Position{52}, std::move(pawn));
     board.place(Position{18}, std::move(pawn2));
@@ -24,6 +26,7 @@ int main() {
     board.place(Position{19}, std::move(bishop));
     board.place(Position{59}, std::move(queen));
     board.place(Position{60}, std::move(king));
+    board.place(Position{57}, std::move(knight));
 
     const Figure* fig = board.at(Position{52});
     const Figure* fig2 = board.at(Position{18});
@@ -31,8 +34,7 @@ int main() {
     const Figure* fig4 = board.at(Position{19});
     const Figure* fig5 = board.at(Position{59});
     const Figure* fig6 = board.at(Position{60});
-
-    std::cout << *fig << "\n";
+    const Figure* fig7 = board.at(Position{57});
 
     auto moves = fig->getRawMoves(Position{52}, board);
     auto moves2 = fig2->getRawMoves(Position{18}, board);
@@ -40,6 +42,9 @@ int main() {
     auto moves4 = fig4->getRawMoves(Position{19}, board);
     auto moves5 = fig5->getRawMoves(Position{59}, board);
     auto moves6 = fig6->getRawMoves(Position{60}, board);
+    auto moves7 = fig7->getRawMoves(Position{57}, board);
+
+    std::cout << *fig << "\n";
 
     for (const auto& pos : moves) {
         std::cout << static_cast<int>(pos.square) << "\n";
@@ -77,6 +82,13 @@ int main() {
     std::cout << *fig6 << "\n";
 
     for (const auto& pos : moves6) {
+        std::cout << static_cast<int>(pos.square) << "\n";
+    }
+
+    std::cout << "\n";
+    std::cout << *fig7 << "\n";
+
+    for (const auto& pos : moves7) {
         std::cout << static_cast<int>(pos.square) << "\n";
     }
 

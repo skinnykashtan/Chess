@@ -10,6 +10,14 @@ Delta offsetToDelta(int8_t offset) {
         case -9: return {-1, -1};
         case 7: return {1, -1};
         case -7: return {-1, 1};
+        case 17: return {2, 1};
+        case -17: return {-2, -1};
+        case 15: return {2, -1};
+        case -15: return {-2, 1};
+        case 6: return {1, -2};
+        case -6: return {-1, 2};
+        case 10: return {1, 2};
+        case -10: return {-1, -2};
         default: return {0 ,0};
     }
 }
