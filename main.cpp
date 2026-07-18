@@ -14,7 +14,7 @@ int main() {
 
     std::unique_ptr<Figure> pawn = std::make_unique<Pawn>(Color::Black);
     std::unique_ptr<Figure> pawn2 = std::make_unique<Pawn>(Color::White);
-    std::unique_ptr<Figure> rook = std::make_unique<Rook>(Color::Black);
+    std::unique_ptr<Figure> rook = std::make_unique<Rook>(Color::White);
     std::unique_ptr<Figure> bishop = std::make_unique<Bishop>(Color::Black);
     std::unique_ptr<Figure> queen = std::make_unique<Queen>(Color::Black);
     std::unique_ptr<Figure> king = std::make_unique<King>(Color::Black);
@@ -22,7 +22,7 @@ int main() {
 
     board.place(Position{52}, std::move(pawn));
     board.place(Position{18}, std::move(pawn2));
-    board.place(Position{17}, std::move(rook));
+    board.place(Position{63}, std::move(rook));
     board.place(Position{11}, std::move(bishop));
     board.place(Position{59}, std::move(queen));
     board.place(Position{60}, std::move(king));
@@ -30,7 +30,7 @@ int main() {
 
     const Figure* fig = board.at(Position{52});
     const Figure* fig2 = board.at(Position{18});
-    const Figure* fig3 = board.at(Position{17});
+    const Figure* fig3 = board.at(Position{63});
     const Figure* fig4 = board.at(Position{11});
     const Figure* fig5 = board.at(Position{59});
     const Figure* fig6 = board.at(Position{60});
@@ -38,7 +38,7 @@ int main() {
 
     auto moves = fig->getRawMoves(Position{52}, board);
     auto moves2 = fig2->getRawMoves(Position{18}, board);
-    auto moves3 = fig3->getRawMoves(Position{17}, board);
+    auto moves3 = fig3->getRawMoves(Position{63}, board);
     auto moves4 = fig4->getRawMoves(Position{11}, board);
     auto moves5 = fig5->getRawMoves(Position{59}, board);
     auto moves6 = fig6->getRawMoves(Position{60}, board);
@@ -94,14 +94,21 @@ int main() {
 
     board.print();
 
-    // makeMove test
-    Move move{Position{11}, Position{18}};
-    board.makeMove(move);
+    std::cout << board.isInCheck(Color::Black) << '\n';
 
+    // makeMove test
+    Move move{Position{63}, Position{55}};
+    board.makeMove(move);
     board.print();
+    std::cout << board.isInCheck(Color::Black) << '\n';
+
+    Move move2{Position{55}, Position{63}};
+    board.makeMove(move2);
+    board.print();
+    std::cout << board.isInCheck(Color::Black) << '\n';
 
     // unmakeMove test
-    board.unmakeMove(move);
+    board.unmakeMove(move2);
     board.print();
 
     return 0;

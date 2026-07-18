@@ -24,6 +24,10 @@ public:
 
     void unmakeMove(Move& move);
 
+    bool isSquareAttacked(Position square, Color by) const;
+
+    bool isInCheck(Color side) const;
+
     void print() const;
 };
 

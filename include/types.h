@@ -12,6 +12,10 @@ struct Position {
 
     int row() const { return square/8; }
     int col() const { return square%8; }
+
+    bool operator==(const Position& other) const {
+        return square == other.square;
+    }
 };
 
 enum class FigureType {
@@ -39,5 +43,9 @@ enum class Color {
     Black,
     White
 };
+
+inline Color opposite(Color c) {
+    return c == Color::White ? Color::Black : Color::White;
+}
 
 #endif //CHESS_TYPES_H

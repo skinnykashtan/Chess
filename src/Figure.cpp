@@ -14,3 +14,7 @@ std::ostream& operator<<(std::ostream& os, const Figure& figure) {
 Color Figure::getColor() const {
     return color_;
 }
+
+FigureType Figure::getType() const {
+    return type_;
+}

@@ -23,6 +23,8 @@ public:
 
     Color getColor() const;
 
+    FigureType getType() const;
+
     friend std::ostream& operator<<(std::ostream& os, const Figure& figure);
 };
 

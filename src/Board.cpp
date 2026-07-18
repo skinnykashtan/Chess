@@ -32,6 +32,42 @@ void Board::unmakeMove(Move &move) {
     toCell = std::move(move.figureCaptured);
 }
 
+bool Board::isSquareAttacked(Position target, Color by) const {
+    for (int row=0; row<8; ++row) {
+        for (int col=0; col<8; ++col) {
+            const auto& square = squares_[row][col];
+            if (square == nullptr) continue;
+            if (square->getColor() != by) continue;
+            Position from;
+            from.square = row*8 + col;
+
+            std::vector<Position> moves = square->getRawMoves(from, *this);
+            for (const auto& m : moves) {
+                if (m == target) {
+                    return true;
+                }
+            }
+        }
+    }
+
+    return false;
+}
+
+bool Board::isInCheck(Color side) const {
+    for (int row=0; row<8; ++row) {
+        for (int col=0; col<8; ++col) {
+            const auto& figure = squares_[row][col];
+            if (figure == nullptr) continue;
+            if (figure->getColor() == side && figure->getType() == FigureType::King) {
+                uint8_t square = row*8 + col;
+                return isSquareAttacked(Position{square}, opposite(side));
+            }
+        }
+    }
+
+    return false;
+}
+
 void Board::print() const {
     for (int row=0; row<8; ++row) {
         for (int col=0; col<8; ++col) {
