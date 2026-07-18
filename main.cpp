@@ -23,7 +23,7 @@ int main() {
     board.place(Position{52}, std::move(pawn));
     board.place(Position{18}, std::move(pawn2));
     board.place(Position{17}, std::move(rook));
-    board.place(Position{19}, std::move(bishop));
+    board.place(Position{11}, std::move(bishop));
     board.place(Position{59}, std::move(queen));
     board.place(Position{60}, std::move(king));
     board.place(Position{57}, std::move(knight));
@@ -31,7 +31,7 @@ int main() {
     const Figure* fig = board.at(Position{52});
     const Figure* fig2 = board.at(Position{18});
     const Figure* fig3 = board.at(Position{17});
-    const Figure* fig4 = board.at(Position{19});
+    const Figure* fig4 = board.at(Position{11});
     const Figure* fig5 = board.at(Position{59});
     const Figure* fig6 = board.at(Position{60});
     const Figure* fig7 = board.at(Position{57});
@@ -39,7 +39,7 @@ int main() {
     auto moves = fig->getRawMoves(Position{52}, board);
     auto moves2 = fig2->getRawMoves(Position{18}, board);
     auto moves3 = fig3->getRawMoves(Position{17}, board);
-    auto moves4 = fig4->getRawMoves(Position{19}, board);
+    auto moves4 = fig4->getRawMoves(Position{11}, board);
     auto moves5 = fig5->getRawMoves(Position{59}, board);
     auto moves6 = fig6->getRawMoves(Position{60}, board);
     auto moves7 = fig7->getRawMoves(Position{57}, board);
@@ -91,6 +91,18 @@ int main() {
     for (const auto& pos : moves7) {
         std::cout << static_cast<int>(pos.square) << "\n";
     }
+
+    board.print();
+
+    // makeMove test
+    Move move{Position{11}, Position{18}};
+    board.makeMove(move);
+
+    board.print();
+
+    // unmakeMove test
+    board.unmakeMove(move);
+    board.print();
 
     return 0;
 }

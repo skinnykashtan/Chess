@@ -8,6 +8,8 @@
 #include <array>
 #include <memory>
 
+#include "Move.h"
+
 class Board {
 private:
     std::array<std::array<std::unique_ptr<Figure>, 8>, 8> squares_{};
@@ -17,6 +19,12 @@ public:
     void place(const Position& pos, std::unique_ptr<Figure> figure);
 
     Figure* at(const Position& pos) const;
+
+    void makeMove(Move& move);
+
+    void unmakeMove(Move& move);
+
+    void print() const;
 };
 
 #endif //CHESS_BOARD_H
