@@ -13,6 +13,8 @@ add_library(chess_lib
         src/Bishop.cpp
         src/King.cpp
         src/Knight.cpp
+        src/Game.cpp
+        ui/BoardView.cpp
 )
 target_include_directories(chess_lib PUBLIC include)
 
