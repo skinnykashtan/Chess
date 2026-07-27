@@ -48,4 +48,23 @@ inline Color opposite(Color c) {
     return c == Color::White ? Color::Black : Color::White;
 }
 
+inline int parseSquare(const std::string& s) {
+    if (s.size() != 2) return -1;
+
+    int col = s[0] - 'a';
+    int rank = s[1] - '0';
+
+    if (col < 0 || col > 7 || rank < 1 || rank > 8) return -1;
+
+    int row = 8 - rank;
+
+    return row * 8 + col;
+}
+
+inline std::string toAlgebraic(int sq) {
+    char file = 'a' + (sq % 8);
+    char rank = '0' + (8 - sq / 8);
+    return {file, rank};
+}
+
 #endif //CHESS_TYPES_H

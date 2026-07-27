@@ -10,6 +10,7 @@ public:
         Board& board = game_.board();
 
         for (int row=0; row<8; ++row) {
+            std::cout << 8 - row << "   ";
             for (int col=0; col<8; ++col) {
                 uint8_t square = row*8 + col;
                 const auto& figure = board.at({square});
@@ -23,6 +24,6 @@ public:
             std::cout << "\n";
         }
         std::cout << "\n";
-        std::cout << "a b c d e f g h\n";
+        std::cout << "    a b c d e f g h\n";
     }
 };
