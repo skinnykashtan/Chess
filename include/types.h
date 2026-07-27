@@ -6,6 +6,8 @@
 #define CHESS_TYPES_H
 #include "cstdint"
 #include <iostream>
+#include <cctype>
+#include <string>
 
 struct Position {
     uint8_t square{};
@@ -50,8 +52,11 @@ inline Color opposite(Color c) {
 
 inline int parseSquare(const std::string& s) {
     if (s.size() != 2) return -1;
+    if (!std::isdigit(static_cast<unsigned char>(s[1]))) return -1;
 
-    int col = s[0] - 'a';
+    char fileChar = static_cast<char>(std::tolower(static_cast<unsigned char>(s[0])));
+
+    int col = fileChar - 'a';
     int rank = s[1] - '0';
 
     if (col < 0 || col > 7 || rank < 1 || rank > 8) return -1;
@@ -62,6 +67,8 @@ inline int parseSquare(const std::string& s) {
 }
 
 inline std::string toAlgebraic(int sq) {
+    if (sq < 0 || sq > 63) return "";
+
     char file = 'a' + (sq % 8);
     char rank = '0' + (8 - sq / 8);
     return {file, rank};
