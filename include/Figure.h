@@ -5,6 +5,7 @@
 #ifndef CHESS_FIGURE_H
 #define CHESS_FIGURE_H
 #include <iosfwd>
+#include <memory>
 #include <vector>
 #include "types.h"
 
@@ -24,6 +25,8 @@ public:
     Color getColor() const;
 
     FigureType getType() const;
+
+    static std::unique_ptr<Figure> makeFigure(Color color, FigureType type);
 
     friend std::ostream& operator<<(std::ostream& os, const Figure& figure);
 };

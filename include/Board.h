@@ -13,6 +13,7 @@
 class Board {
 private:
     std::array<std::array<std::unique_ptr<Figure>, 8>, 8> squares_{};
+    Color sideToMove_;
 public:
     Board() = default;
 
@@ -27,6 +28,10 @@ public:
     bool isSquareAttacked(Position square, Color by) const;
 
     bool isInCheck(Color side) const;
+
+    void clear();
+
+    void setupStartingPosition();
 
     void print() const;
 };

@@ -1,4 +1,5 @@
 #include "Board.h"
+#include "Figure.h"
 
 void Board::place(const Position& pos, std::unique_ptr<Figure> figure) {
     if (squares_[pos.row()][pos.col()] == nullptr) {
@@ -66,6 +67,35 @@ bool Board::isInCheck(Color side) const {
     }
 
     return false;
+}
+
+void Board::clear() {
+    sideToMove_ = Color::White;
+
+    for (int row=0; row<8; ++row) {
+        for (int col=0; col<8; ++col) {
+            squares_[row][col] = nullptr;
+        }
+    }
+}
+
+void Board::setupStartingPosition() {
+    clear();
+
+    FigureType backRank[] = {
+        FigureType::Rook, FigureType::Knight, FigureType::Bishop, FigureType::Queen, FigureType::King, FigureType::Bishop, FigureType::Knight, FigureType::Rook
+    };
+    // BLACK
+    for (int col=0; col<8; col++) {
+        squares_[0][col] = Figure::makeFigure(Color::Black, backRank[col]);
+        squares_[1][col] = Figure::makeFigure(Color::Black, FigureType::Pawn);
+    }
+
+    // WHITE
+    for (int col=0; col<8; col++) {
+        squares_[7][col] = Figure::makeFigure(Color::White, backRank[col]);
+        squares_[6][col] = Figure::makeFigure(Color::White, FigureType::Pawn);
+    }
 }
 
 void Board::print() const {
