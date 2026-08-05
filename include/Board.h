@@ -33,7 +33,7 @@ public:
 
     void setupStartingPosition();
 
-    bool isLegalMove(const Board& board, Move& move);
+    bool isLegalMove(Move& move);
 
     void print() const;
 };
