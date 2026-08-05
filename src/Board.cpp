@@ -1,4 +1,7 @@
 #include "Board.h"
+
+#include <algorithm>
+
 #include "Figure.h"
 
 void Board::place(const Position& pos, std::unique_ptr<Figure> figure) {
@@ -96,6 +99,24 @@ void Board::setupStartingPosition() {
         squares_[7][col] = Figure::makeFigure(Color::White, backRank[col]);
         squares_[6][col] = Figure::makeFigure(Color::White, FigureType::Pawn);
     }
+}
+
+bool Board::isLegalMove(const Board& board, Move& move) {
+    if (move.from.square < 0 || move.from.square > 63) return false;
+
+    std::vector<Position> moves = board.at(Position{move.from})->getRawMoves(Position{move.from}, board);
+    const auto& figure = at(Position{move.from.square});
+    for (std::size_t i=0; i<moves.size(); i++) {
+        if (move.to == moves[i]) {
+            makeMove(move);
+            if (!isInCheck(figure->getColor())) {
+                unmakeMove(move);
+                return true;
+            }
+        }
+    }
+
+    return false;
 }
 
 void Board::print() const {

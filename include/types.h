@@ -50,7 +50,7 @@ inline Color opposite(Color c) {
     return c == Color::White ? Color::Black : Color::White;
 }
 
-inline int parseSquare(const std::string& s) {
+inline uint8_t parseSquare(const std::string& s) {
     if (s.size() != 2) return -1;
     if (!std::isdigit(static_cast<unsigned char>(s[1]))) return -1;
 

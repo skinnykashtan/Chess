@@ -26,4 +26,15 @@ public:
         std::cout << "\n";
         std::cout << "    a b c d e f g h\n";
     }
+
+    void isLegalMovePrint() {
+        Board& board = game_.board();
+        Move move{Position{parseSquare("g2")}, Position{parseSquare("g3")}};
+
+        if (board.isLegalMove(board, move)) {
+            std::cout << "true " << move.to.square;
+        } else {
+            std::cout << "false " << move.to.square;
+        }
+    }
 };
