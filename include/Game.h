@@ -9,6 +9,7 @@
 class Game {
 private:
     Board board_{};
+    GameResult result_{};
 public:
     Game() {
         board().setupStartingPosition();
@@ -17,6 +18,8 @@ public:
     Board& board();
 
     void newGame();
+
+    GameResult result() const;
 };
 
 #endif //CHESS_GAME_H

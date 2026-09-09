@@ -9,6 +9,8 @@ public:
     void draw() {
         Board& board = game_.board();
 
+        std::cout << "\n";
+
         for (int row=0; row<8; ++row) {
             std::cout << 8 - row << "   ";
             for (int col=0; col<8; ++col) {

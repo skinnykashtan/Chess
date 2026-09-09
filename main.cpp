@@ -2,6 +2,7 @@
 
 #include "Game.h"
 #include "ui/BoardView.cpp"
+#include "Board.h"
 
 
 int main() {
@@ -9,16 +10,42 @@ int main() {
     Game game{};
     BoardView view{game};
 
-    Move move1{parseSquare("e7"), parseSquare({"e5"})};
-    Move move2{parseSquare("f2"), parseSquare("f4")};
-    Move move3{parseSquare("d8"), parseSquare("h4")};
+    std::string from;
+    std::string to;
+    bool correctInput = false;
 
-    game.board().makeMove(move1);
-    game.board().makeMove(move2);
-    game.board().makeMove(move3);
-    view.draw();
+    while (game.result() == GameResult::Playing) {
+        view.draw();
 
-    view.isLegalMovePrint();
+        while (!correctInput) {
+            std::cout << "White's turn: ";
+            std::cin >> from >> to;
+            Move move{parseSquare(from), parseSquare(to)};
+
+            if (game.board().at(Position{parseSquare(from)})->getColor() == Color::White && game.board().isLegalMove(move)) {
+                game.board().makeMove(move);
+                view.draw();
+                break;
+            }
+
+            std::cout << "Wrong move; Correct Format ex.(e1 e3)" << "\n";
+        }
+
+
+        while (!correctInput) {
+            std::cout << "Black's turn: ";
+            std::cin >> from >> to;
+            Move move{parseSquare(from), parseSquare(to)};
+
+            if (game.board().at(Position{parseSquare(from)})->getColor() == Color::Black && game.board().isLegalMove(move)) {
+                game.board().makeMove(move);
+                view.draw();
+                break;
+            }
+
+            std::cout << "Wrong move; Correct Format ex.(e1 e3)" << "\n";
+        }
+    }
 
     return 0;
 }

@@ -29,6 +29,13 @@ enum class FigureType {
     Pawn
 };
 
+enum class GameResult {
+    Playing,
+    WhiteWins,
+    BlackWins,
+    Draw
+};
+
 inline char getTypeChar(const FigureType& type) {
     switch (type) {
         case FigureType::Pawn:      return 'P';

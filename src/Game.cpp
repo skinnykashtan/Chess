@@ -7,3 +7,7 @@ Board& Game::board() {
 void Game::newGame() {
     board_.setupStartingPosition();
 }
+
+GameResult Game::result() const {
+    return result_;
+}
