@@ -53,6 +53,14 @@ enum class Color {
     White
 };
 
+inline std::string getColor(const Color& color) {
+    switch (color) {
+        case Color::White: return "White";
+        case Color::Black: return "Black";
+        default: return "?";
+    }
+}
+
 inline Color opposite(Color c) {
     return c == Color::White ? Color::Black : Color::White;
 }
@@ -79,6 +87,21 @@ inline std::string toAlgebraic(int sq) {
     char file = 'a' + (sq % 8);
     char rank = '0' + (8 - sq / 8);
     return {file, rank};
+}
+
+inline bool isCorrectNotation(std::string& square) {
+    if (square.length() != 2) return false;
+
+    char col = square[0];
+    char row = square[1];
+
+    if (col < 'a' || col > 'h') {
+        return false;
+    }
+
+    if (row < '1' || row > '8') return false;
+
+    return true;
 }
 
 #endif //CHESS_TYPES_H
